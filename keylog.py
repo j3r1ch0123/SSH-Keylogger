@@ -4,7 +4,7 @@ import paramiko
 
 RHOSTS = "127.0.0.1" #Change this
 
-username = "user" #Change this
+user = "user" #Change this
 password = "password" #Change this
 
 # Text for the logs
